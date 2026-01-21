@@ -14,6 +14,7 @@ export function FlipCard({
     const [cardSize, setCardSize] = useState({ width: 96, height: 112 }); // Initial size matches w-24 h-28
     const [fontSize, setFontSize] = useState(48);
     const containerRef = useRef(null);
+    const lastMeasuredRef = useRef({ width: 0, height: 0 });
 
     useEffect(() => {
         if (!containerRef.current) return;
@@ -22,8 +23,16 @@ export function FlipCard({
             if (containerRef.current) {
                 const rect = containerRef.current.getBoundingClientRect();
                 if (rect.width > 0 && rect.height > 0) {
-                    setCardSize({ width: rect.width, height: rect.height });
-                    setFontSize(Math.floor(rect.width * 0.45));
+                    // Round to avoid fractional-pixel feedback loops with ResizeObserver/canvas.
+                    const nextWidth = Math.round(rect.width);
+                    const nextHeight = Math.round(rect.height);
+
+                    const prev = lastMeasuredRef.current;
+                    if (prev.width !== nextWidth || prev.height !== nextHeight) {
+                        lastMeasuredRef.current = { width: nextWidth, height: nextHeight };
+                        setCardSize({ width: nextWidth, height: nextHeight });
+                        setFontSize(Math.floor(nextWidth * 0.45));
+                    }
                 }
             }
         };
@@ -63,11 +72,13 @@ export function FlipCard({
     const formattedValue = String(value).padStart(2, "0");
 
     return (
-        <div className="flex flex-col items-center gap-1">
+        <div className="flex flex-col items-center gap-1 flex-1 sm:flex-none min-w-0">
             <div
                 ref={containerRef}
                 className={cn(
-                    "flip-card relative max-w-16 xs:max-w-20 h-28 sm:w-32 sm:h-36 md:max-w-32 md:max-h-36 md:w-40 md:h-44 group cursor-default",
+                    // Fit 4 cards in a single row on mobile (no wrap), keep them readable.
+                    "flip-card relative w-full max-w-[88px] xs:max-w-[100px] sm:max-w-none sm:w-32 sm:h-36 md:w-40 md:h-44 group cursor-default",
+                    "h-24 xs:h-28",
                     "transition-all duration-300 ease-out"
                 )}
             >

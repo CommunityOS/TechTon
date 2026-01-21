@@ -51,7 +51,7 @@ export const event = {
         },
         hosts: {
             url: "https://communityos.neetoform.com/4b6e94757c73607ba7e0",
-            title: "Sumate como Host",
+            title: "Sumate a la organización",
         },
     }
 }

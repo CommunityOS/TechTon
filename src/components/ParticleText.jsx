@@ -20,6 +20,7 @@ export function ParticleText({
 }) {
     const canvasRef = useRef(null);
     const animationRef = useRef(0);
+    const dprRef = useRef(1);
     const prevTextRef = useRef(text);
     const initializedRef = useRef(false);
     const prevDimensionsRef = useRef({ width: 0, height: 0 });
@@ -61,6 +62,20 @@ export function ParticleText({
         }
     }, [initParticles, width, height, text, fontSize, color, prefersReducedMotion]);
 
+    // Keep canvas backing store in sync with size + devicePixelRatio (avoid layout thrash in the animation loop)
+    useEffect(() => {
+        const canvas = canvasRef.current;
+        if (!canvas || width <= 0 || height <= 0) return;
+
+        const dpr = typeof window !== "undefined" ? window.devicePixelRatio || 1 : 1;
+        dprRef.current = dpr;
+
+        canvas.style.width = `${width}px`;
+        canvas.style.height = `${height}px`;
+        canvas.width = Math.floor(width * dpr);
+        canvas.height = Math.floor(height * dpr);
+    }, [width, height]);
+
     // Animation loop
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -70,6 +85,8 @@ export function ParticleText({
         if (!ctx) return;
 
         const animate = () => {
+            const dpr = dprRef.current || 1;
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
             ctx.clearRect(0, 0, width, height);
             updatePhysics(!prefersReducedMotion);
             drawParticles(ctx);

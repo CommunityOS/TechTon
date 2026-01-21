@@ -11,8 +11,9 @@ const TIMEZONE = "America/Santiago";
 const LOCALE = "und-u-nu-latn";
 
 const particleConfig = {
-  particleCount: 1000000,
-  particleSize: { min: 0.01, max: 1 },
+  // Smaller count + larger particles look sharper (especially on mobile) and avoid "foggy" text.
+  particleCount: 12000,
+  particleSize: { min: 0.9, max: 2.2 },
   physics: {
     spring: 0.02,
     friction: 0.85,
@@ -195,7 +196,7 @@ export const CountdownTimer = () => {
   return (
     <div className="min-h-[148px] sm:min-h-[180px] md:min-h-[224px] flex justify-center items-center py-4">
       <AnimatePresence mode="popLayout">
-        {isClient >= 0 && (
+        {isClient && (
           <motion.div
             key="countdown"
             exit={{ opacity: 0 }}
@@ -204,7 +205,7 @@ export const CountdownTimer = () => {
             transition={{ duration: 1.2, delay: 1.1 }}
             className="w-full"
           >
-            <div className="flex gap-1 sm:gap-2 md:gap-3 justify-center">
+            <div className="flex w-full max-w-[520px] sm:max-w-none mx-auto justify-between sm:justify-center gap-1 sm:gap-6 md:gap-8">
               {timeRemaining.total >= 0 && <FlipCard value={timeRemaining.days} label="Días" isUrgent={isUrgent} particleConfig={particleConfig} />}
               {timeRemaining.total >= 0 && <FlipCard value={timeRemaining.hours} label="Horas" isUrgent={isUrgent} particleConfig={particleConfig} />}
               {timeRemaining.total >= 0 && <FlipCard value={timeRemaining.minutes} label="Minutos" isUrgent={isUrgent} particleConfig={particleConfig} />}

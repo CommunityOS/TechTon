@@ -31,7 +31,9 @@ export function useParticles({ width, height, config }) {
             if (!ctx) return [];
 
             ctx.fillStyle = "white";
-            ctx.font = `bold ${fontSize}px ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace`;
+            // Use a more readable font stack (fonts are loaded globally in the app: Kufam/Inter).
+            // Weight included here instead of relying on "bold" keyword for better consistency.
+            ctx.font = `200 ${fontSize}px  Roboto, Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif`;
             ctx.textAlign = "center";
             ctx.textBaseline = "middle";
             ctx.fillText(text, width / 2, height / 2);
@@ -40,8 +42,10 @@ export function useParticles({ width, height, config }) {
             const allPixels = [];
 
             // Collect all text pixels
-            for (let y = 0; y < height; y += 2) {
-                for (let x = 0; x < width; x += 2) {
+            // Use finer sampling on small canvases (mobile) so text edges look sharper.
+            const sampleStep = width <= 110 || height <= 110 || fontSize <= 52 ? 1 : 2;
+            for (let y = 0; y < height; y += sampleStep) {
+                for (let x = 0; x < width; x += sampleStep) {
                     const i = (y * width + x) * 4;
                     if (imageData.data[i + 3] > 128) {
                         allPixels.push({ x, y });
