@@ -7,7 +7,7 @@ export const getMetaData = ({
   overwriteTitle = false
 }) => {
   const title = overwriteTitle ? _title : _title ? `${_title} | TechTon - ${organizer.name}` : `TechTon - ${organizer.name}`
-  const images = ["/og-image.jpg"]
+  const images = ["/og-image.png"]
 
   return {
     metadataBase: new URL(url),
