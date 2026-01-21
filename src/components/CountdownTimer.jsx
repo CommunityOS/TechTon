@@ -11,12 +11,12 @@ const TIMEZONE = "America/Santiago";
 const LOCALE = "und-u-nu-latn";
 
 const particleConfig = {
-  particleCount: 10000,
-  particleSize: { min: 0.1, max: 1 },
+  particleCount: 1000000,
+  particleSize: { min: 0.01, max: 1 },
   physics: {
     spring: 0.02,
     friction: 0.85,
-    scatterForce: 5,
+    scatterForce: 10,
   },
 };
 
@@ -173,7 +173,7 @@ export const CountdownTimer = () => {
                 href={organizer.social.twitch}
                 target="_blank"
                 variant="tertiary"
-                classnames="bg-twitch text-white flex items-center gap-3 hover:bg-[#a675f4] hover:scale-105 duration-300 mt-10 mb-3 !text-3xl !px-10"
+                classnames="hidden bg-twitch text-white flex items-center gap-3 hover:bg-[#a675f4] hover:scale-105 duration-300 mt-10 mb-3 !text-3xl !px-10"
                 id="twitch-mb-btn"
                 setDefaultMinWidth={false}
               >
@@ -195,7 +195,7 @@ export const CountdownTimer = () => {
   return (
     <div className="min-h-[148px] sm:min-h-[180px] md:min-h-[224px] flex justify-center items-center py-4">
       <AnimatePresence mode="popLayout">
-        {isClient && (
+        {isClient >= 0 && (
           <motion.div
             key="countdown"
             exit={{ opacity: 0 }}
@@ -204,7 +204,7 @@ export const CountdownTimer = () => {
             transition={{ duration: 1.2, delay: 1.1 }}
             className="w-full"
           >
-            <div className="flex gap-4 sm:gap-6 md:gap-8 flex-wrap justify-center">
+            <div className="flex gap-1 sm:gap-2 md:gap-3 justify-center">
               {timeRemaining.total >= 0 && <FlipCard value={timeRemaining.days} label="Días" isUrgent={isUrgent} particleConfig={particleConfig} />}
               {timeRemaining.total >= 0 && <FlipCard value={timeRemaining.hours} label="Horas" isUrgent={isUrgent} particleConfig={particleConfig} />}
               {timeRemaining.total >= 0 && <FlipCard value={timeRemaining.minutes} label="Minutos" isUrgent={isUrgent} particleConfig={particleConfig} />}

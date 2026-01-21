@@ -59,7 +59,7 @@ export default function Home() {
             </Button>
           </div>
           <hr className="w-full border-gray-700 my-4" />
-          <div className="flex w-full gap-3 px-5 3xs:w-auto 3xs:gap-8 flex-col 3xs:flex-row">
+          <div className="flex w-full gap-3 px-5 xs:w-auto xs:gap-8 flex-col md:flex-row justify-center">
             {[event.forms.hosts, event.forms.speakers, event.forms.communities].map((form, idx) => <Button
               id={form.title.toLowerCase().replace(" ", "-")}
               key={`${form.title.toLowerCase().replace(" ", "-")}-btn`}

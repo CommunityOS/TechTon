@@ -5,6 +5,7 @@ import "./globals.css";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/NavBar";
 import { event } from "@/lib/config";
+import { formatDateChileDateOnly } from "@/lib/utils";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -23,7 +24,7 @@ const museo_moderno = MuseoModerno({
 export const metadata = {
   title: "TechTon | JsChile",
   description:
-    `Recaudaremos fondos que serán entregados a Bomberos de Chile para ayudar a mitigar los efectos causados por los incendios que comenzaron a ocurrir el ${event.initialIncident.toLocaleDateString("es-ES", { day: "2-digit", month: "2-digit", year: "numeric" })} en la ${event.place}`,
+    `Recaudaremos fondos que serán entregados a Bomberos de Chile para ayudar a mitigar los efectos causados por los incendios que comenzaron a ocurrir el ${formatDateChileDateOnly(event.initialIncident, { day: "2-digit", month: "2-digit", year: "numeric" })} en la ${event.place}`,
 };
 
 export default function RootLayout({ children }) {

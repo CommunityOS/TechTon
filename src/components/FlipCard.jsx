@@ -63,11 +63,11 @@ export function FlipCard({
     const formattedValue = String(value).padStart(2, "0");
 
     return (
-        <div className="flex flex-col items-center gap-3">
+        <div className="flex flex-col items-center gap-1">
             <div
                 ref={containerRef}
                 className={cn(
-                    "flip-card relative w-24 h-28 sm:w-32 sm:h-36 md:w-40 md:h-44 group cursor-default",
+                    "flip-card relative max-w-16 xs:max-w-20 h-28 sm:w-32 sm:h-36 md:max-w-32 md:max-h-36 md:w-40 md:h-44 group cursor-default",
                     "transition-all duration-300 ease-out"
                 )}
             >
@@ -115,7 +115,7 @@ export function FlipCard({
             </div>
 
             {/* Label */}
-            <span className="text-sm sm:text-base font-medium text-muted-foreground uppercase tracking-widest">
+            <span className="text-[10px] xs:text-xs sm:text-sm lg:text-base font-medium text-muted-foreground uppercase tracking-widest">
                 {label}
             </span>
         </div>

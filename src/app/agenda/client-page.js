@@ -7,14 +7,15 @@ import { Timeline } from "@/components/Timeline";
 import talksData from "@/talks/talks.json";
 import { AnimatePresence, motion } from "framer-motion";
 import { event } from "@/lib/config";
+import { formatDateChileDateOnly, getChileDayOfMonth } from "@/lib/utils";
 
 export default function Agenda() {
   const [activeDay, setActiveDay] = useState(9);
   const talksDay1 = talksData.filter(
-    (item) => new Date(item.startHour).getDate() === 9,
+    (item) => getChileDayOfMonth(new Date(item.startHour)) === 9,
   );
   const talksDay2 = talksData.filter(
-    (item) => new Date(item.startHour).getDate() === 10,
+    (item) => getChileDayOfMonth(new Date(item.startHour)) === 10,
   );
   return (
     <div className="flex flex-col w-full relative justify-center items-center">
@@ -55,7 +56,7 @@ export default function Agenda() {
             classnames={`${talksDay1.length > 0 ? "block" : "hidden"}`}
             onClick={() => setActiveDay(9)}
           >
-            {event.days[0].day} {event.dates[0].toLocaleDateString("es-ES", { day: "2-digit" })}
+            {event.days[0].day} {formatDateChileDateOnly(event.dates[0], { day: "2-digit" })}
           </Button>
           <Button
             id="day10"
@@ -63,7 +64,7 @@ export default function Agenda() {
             classnames={`${talksDay2.length > 0 ? "block" : "hidden"}`}
             onClick={() => setActiveDay(10)}
           >
-            {event.days[1].day} {event.dates[1].toLocaleDateString("es-ES", { day: "2-digit" })}
+            {event.days[1].day} {formatDateChileDateOnly(event.dates[1], { day: "2-digit" })}
           </Button>
         </div>
         <div

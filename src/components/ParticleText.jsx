@@ -6,7 +6,7 @@ import { useParticles } from "./hooks/useParticles";
 
 
 const COLORS = {
-    normal: "150, 225, 255",
+    normal: "200, 225, 255",
     urgent: "255, 180, 100",
 };
 
