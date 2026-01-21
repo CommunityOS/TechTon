@@ -3,7 +3,7 @@ import { event, organizer } from "./config";
 export const getMetaData = ({
   title: _title = "",
   description = `TechTon — Comunidades Tech unidas por una causa | ${event.hours} horas de Streaming | ${event.speakers} Charlistas. ¡Ayúdanos a levantar Chile! Donaremos los fondos a Bomberos de Chile `,
-  url = "https://techton.jschile.org/",
+  url = "https://techton.cl/",
   overwriteTitle = false
 }) => {
   const title = overwriteTitle ? _title : _title ? `${_title} | TechTon - ${organizer.name}` : `TechTon - ${organizer.name}`
