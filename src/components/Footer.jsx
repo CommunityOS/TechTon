@@ -23,7 +23,7 @@ const Footer = () => {
             <span className="font-black">{event.dates.map(date => date.getDate()).join(" y ")}</span> de {getCapitalizedMonth(event.dates[0])} de {event.dates[0].getFullYear()}
           </div>
           <div className="py-5 sm:py-0 space-y-3">
-            {event.days.map((elem, idx) => <div className="text-md sm:text-sm flex gap-3 items-center md:text-[15px]">
+            {event.days.map((elem) => <div key={`${elem.day}-${elem.date}-${elem.time}-${elem.timeZone}`} className="text-md sm:text-sm flex gap-3 items-center md:text-[15px]">
               <span className="font-bold mr-1">{elem.day} {elem.date}</span> desde las {elem.time} hrs.
               <Image
                 alt="Hora Chile"
@@ -78,7 +78,7 @@ const Footer = () => {
             />
             <div className="flex flex-col space-y-4">
 
-              {event.days.map((elem, idx) => <div className="flex gap-3 lg:text-lg xl:text-xl">
+              {event.days.map((elem) => <div key={`${elem.day}-${elem.date}-${elem.time}-${elem.timeZone}`} className="flex gap-3 lg:text-lg xl:text-xl">
                 <span className="font-bold mr-1">{elem.day} {elem.date}</span> desde las {elem.time} hrs.
                 <Image
                   alt="Hora Chile"

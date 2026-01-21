@@ -62,6 +62,7 @@ export default function Home() {
           <div className="flex w-full gap-3 px-5 3xs:w-auto 3xs:gap-8 flex-col 3xs:flex-row">
             {[event.forms.hosts, event.forms.speakers, event.forms.communities].map((form, idx) => <Button
               id={form.title.toLowerCase().replace(" ", "-")}
+              key={`${form.title.toLowerCase().replace(" ", "-")}-btn`}
               href={form.url}
               variant="primary"
               classnames="py-3 md:py-3.5"

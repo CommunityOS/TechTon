@@ -36,6 +36,7 @@ export default function Agenda() {
           {[event.forms.speakers, event.forms.hosts].map((elem) =>
             <Button
               href={elem.url}
+              key={`${elem.title.toLowerCase().replace(" ", "-")}-btn`}
               id={`${elem.title.toLowerCase().replace(" ", "-")}-btn`}
               target="_blank"
               rel="noopener noreferrer"
