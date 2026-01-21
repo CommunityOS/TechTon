@@ -1,5 +1,7 @@
 import Image from "next/image";
 import React from "react";
+import { event } from "@/lib/config";
+import { getCapitalizedMonth } from "@/lib/utils";
 
 const Footer = () => {
   return (
@@ -18,31 +20,20 @@ const Footer = () => {
         </div>
         <div className="m-auto flex-2 flex flex-col items-center">
           <div className="sm:mb-3 text-lg sm:text-md font-semibold bg-white md:p- px-5 text-center rounded-b-xl sm:rounded p-3 md:p-4">
-            <span className="font-black">09 y 10</span> de Febrero de 2024
+            <span className="font-black">{event.dates.map(date => date.getDate()).join(" y ")}</span> de {getCapitalizedMonth(event.dates[0])} de {event.dates[0].getFullYear()}
           </div>
           <div className="py-5 sm:py-0 space-y-3">
-            <div className="text-md sm:text-sm flex gap-3 items-center md:text-[15px]">
-              <span className="font-bold mr-1">Viernes 09</span> desde las 13:00
-              hrs.
+            {event.days.map((elem, idx) => <div className="text-md sm:text-sm flex gap-3 items-center md:text-[15px]">
+              <span className="font-bold mr-1">{elem.day} {elem.date}</span> desde las {elem.time} hrs.
               <Image
                 alt="Hora Chile"
                 src="images/footer/chilean-flag.svg"
                 height={20}
                 width={20}
               />
-              GMT-3
-            </div>
-            <div className="text-md sm:text-sm flex gap-3 items-center md:text-[15px]">
-              <span className="font-bold mr-1">Sábado 10</span> desde las 7:00
-              hrs.
-              <Image
-                alt="Hora Chile"
-                src="images/footer/chilean-flag.svg"
-                height={20}
-                width={20}
-              />
-              GMT-3
-            </div>
+              {elem.timeZone}
+
+            </div>)}
           </div>
         </div>
         <div className="flex-1 hidden sm:block">
@@ -76,7 +67,7 @@ const Footer = () => {
               height={50}
               width={50}
             />
-            <span className="font-black mr-1">09 y 10</span> de Febrero de 2024
+            <span className="font-black mr-1">{event.dates.map(date => date.getDate()).join(" y ")}</span> de {getCapitalizedMonth(event.dates[0])} de {event.dates[0].getFullYear()}
           </div>
           <div className="gap-10 flex items-center text-xl">
             <Image
@@ -86,28 +77,17 @@ const Footer = () => {
               width={50}
             />
             <div className="flex flex-col space-y-4">
-              <div className="flex gap-3 lg:text-lg xl:text-xl">
-                <span className="font-bold mr-1">Viernes 09</span> desde las
-                13:00 hrs.
+
+              {event.days.map((elem, idx) => <div className="flex gap-3 lg:text-lg xl:text-xl">
+                <span className="font-bold mr-1">{elem.day} {elem.date}</span> desde las {elem.time} hrs.
                 <Image
                   alt="Hora Chile"
                   src="images/footer/chilean-flag.svg"
                   height={20}
                   width={20}
                 />
-                GMT-3
-              </div>
-              <div className="flex gap-3 lg:text-lg xl:text-xl">
-                <span className="font-bold mr-1">Sábado 10</span> desde las 7:00
-                hrs.
-                <Image
-                  alt="Hora Chile"
-                  src="images/footer/chilean-flag.svg"
-                  height={20}
-                  width={20}
-                />
-                GMT-3
-              </div>
+                {elem.timeZone}
+              </div>)}
             </div>
           </div>
         </div>
