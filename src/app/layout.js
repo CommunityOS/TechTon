@@ -4,6 +4,7 @@ import { Inter, Kufam, MuseoModerno } from "next/font/google";
 import "./globals.css";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/NavBar";
+import { event } from "@/lib/config";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -22,7 +23,7 @@ const museo_moderno = MuseoModerno({
 export const metadata = {
   title: "TechTon | JsChile",
   description:
-    "Recaudaremos fondos que serán entregados a Bomberos de Chile para ayudar a mitigar los efectos causados por los incendios que comenzaron a ocurrir el 02-02-2024 en la V Región de Chile",
+    `Recaudaremos fondos que serán entregados a Bomberos de Chile para ayudar a mitigar los efectos causados por los incendios que comenzaron a ocurrir el ${event.initialIncident.toLocaleDateString("es-ES", { day: "2-digit", month: "2-digit", year: "numeric" })} en la ${event.place}`,
 };
 
 export default function RootLayout({ children }) {

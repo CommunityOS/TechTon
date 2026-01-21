@@ -5,11 +5,12 @@ import { Button } from "@/components/Button/Button";
 import { event, organizer } from "@/lib/config";
 import { getMetaData, getViewports } from "@/lib/metadata";
 
+
 export const generateMetadata = () =>
   getMetaData({
     title: "Comunidades Tech de Chile",
     description:
-      "TechTon — Comunidades Tech unidas por una causa. Organizado por JSChile, pero con mucho cariño y apoyo de todas las comunidades. Lee más de todos acá.",
+      `TechTon — Comunidades Tech unidas por una causa. Organizado por ${organizer.name}, pero con mucho cariño y apoyo de todas las comunidades. Lee más de todos acá.`,
   });
 
 export const generateViewport = () => getViewports();

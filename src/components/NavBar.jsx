@@ -107,7 +107,7 @@ export function Navbar() {
             <Button
               href="/donar"
               variant="primary"
-              classnames="inline-block mt-4 lg:mt-0 min-w-0 lg:min-w-32 md:py-2 !text-sm"
+              classnames="inline-block mt-4 lg:mt-0 min-w-0 lg:min-w-32 md:py-2 !text-sm hidden"
               id="donar-btn"
               setDefaultMinWidth={false}
             >

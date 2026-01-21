@@ -1,10 +1,12 @@
+import { event, organizer } from "./config";
+
 export const getMetaData = ({
   title: _title = "",
-  description = "TechTon — Comunidades Tech unidas por una causa | 20 horas de Streaming | 40 Charlistas. ¡Ayúdanos a levantar Chile! Donaremos los fondos a Bomberos de Chile",
+  description = `TechTon — Comunidades Tech unidas por una causa | ${event.hours} horas de Streaming | ${event.speakers} Charlistas. ¡Ayúdanos a levantar Chile! Donaremos los fondos a Bomberos de Chile `,
   url = "https://techton.jschile.org/",
   overwriteTitle = false
 }) => {
-  const title = overwriteTitle ? _title : _title ? `${_title} | TechTon - JSChile` : "TechTon - JSChile"
+  const title = overwriteTitle ? _title : _title ? `${_title} | TechTon - ${organizer.name}` : `TechTon - ${organizer.name}`
   const images = ["/og-image.jpg"]
 
   return {
@@ -15,12 +17,13 @@ export const getMetaData = ({
     keywords: [
       "TechTon",
       "JSChile",
+      organizer.name,
       "Comunidades",
       "Streaming",
       "Donación",
       "Bomberos de Chile"
     ],
-    authors: [{ name: "JSChile", url }],
+    authors: [{ name: organizer.name, url }],
 
     // OpenGraph
     openGraph: {

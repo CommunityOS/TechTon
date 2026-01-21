@@ -14,6 +14,8 @@ export const organizer = {
 
 export const event = {
     name: "TechTon",
+    speakers: 30,
+    hours: 20,
     initialIncident: new Date("2026-01-16"),
     place: "Región del Bíobio de Chile",
     dates: [new Date("2026-01-23"), new Date("2026-01-24")],

@@ -11,9 +11,8 @@ export const NumberBox = ({ number, text, flip }) => {
         <div className="rounded-b-lg rounded-t-lg bg-primary w-full h-full"></div>
 
         <div
-          className={`absolute w-full h-1/2 top-0 rounded-lg z-5 ${
-            flip ? "animate-flip bg-primary" : "bg-transparent"
-          }`}
+          className={`absolute w-full h-1/2 top-0 rounded-lg z-5 ${flip ? "animate-flip bg-primary" : "bg-transparent"
+            }`}
         />
       </div>
       <p className="text-xs sm:text-sm md:text-lg lg:text-xl mt-2 sm:mt-3 font-bold text-white">{text}</p>

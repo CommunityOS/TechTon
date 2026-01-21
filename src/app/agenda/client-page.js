@@ -6,6 +6,7 @@ import { Title } from "@/components/Title";
 import { Timeline } from "@/components/Timeline";
 import talksData from "@/talks/talks.json";
 import { AnimatePresence, motion } from "framer-motion";
+import { event } from "@/lib/config";
 
 export default function Agenda() {
   const [activeDay, setActiveDay] = useState(9);
@@ -31,22 +32,37 @@ export default function Agenda() {
             </svg>
           }
         />
+        <section className="flex flex-wrap items-center justify-center gap-4">
+          {[event.forms.speakers, event.forms.hosts].map((elem) =>
+            <Button
+              href={elem.url}
+              id={`${elem.title.toLowerCase().replace(" ", "-")}-btn`}
+              target="_blank"
+              rel="noopener noreferrer"
+              variant="primary"
+              classnames="py-3 md:py-3.5">
+              {elem.title}
+            </Button>
+          )}
+        </section>
       </section>
       <div className="sticky top-0 pt-6 pb-10 w-full h-fit z-10">
         <div className="relative z-10 flex justify-center gap-4 flex-wrap">
           <Button
             id="day9"
             variant={`${activeDay === 9 ? "primary" : "tertiary"}`}
+            classnames={`${talksDay1.length > 0 ? "block" : "hidden"}`}
             onClick={() => setActiveDay(9)}
           >
-            Viernes 9 de Febrero
+            {event.days[0].day} {event.dates[0].toLocaleDateString("es-ES", { day: "2-digit" })}
           </Button>
           <Button
             id="day10"
             variant={`${activeDay === 10 ? "primary" : "tertiary"}`}
+            classnames={`${talksDay2.length > 0 ? "block" : "hidden"}`}
             onClick={() => setActiveDay(10)}
           >
-            Sábado 10 de Febrero
+            {event.days[1].day} {event.dates[1].toLocaleDateString("es-ES", { day: "2-digit" })}
           </Button>
         </div>
         <div
@@ -58,7 +74,7 @@ export default function Agenda() {
         ></div>
       </div>
       <AnimatePresence>
-        {activeDay === 9 && (
+        {talksDay1.length > 0 && activeDay === 9 && (
           <motion.div
             key="day9"
             initial={{ opacity: 0 }}
@@ -68,7 +84,7 @@ export default function Agenda() {
             <Timeline data={talksDay1} />
           </motion.div>
         )}
-        {activeDay === 10 && (
+        {talksDay2.length > 0 && activeDay === 10 && (
           <motion.div
             key="day10"
             initial={{ opacity: 0 }}
