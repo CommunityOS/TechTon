@@ -195,7 +195,7 @@ export const CountdownTimer = () => {
   return (
     <div className="min-h-[148px] sm:min-h-[180px] md:min-h-[224px] flex justify-center items-center py-4">
       <AnimatePresence mode="popLayout">
-        {isClient >= 0 && (
+        {isClient && (
           <motion.div
             key="countdown"
             exit={{ opacity: 0 }}
@@ -204,7 +204,7 @@ export const CountdownTimer = () => {
             transition={{ duration: 1.2, delay: 1.1 }}
             className="w-full"
           >
-            <div className="flex gap-1 sm:gap-2 md:gap-3 justify-center">
+            <div className="flex w-full max-w-[520px] mx-auto justify-between gap-1 sm:gap-2 md:gap-3">
               {timeRemaining.total >= 0 && <FlipCard value={timeRemaining.days} label="Días" isUrgent={isUrgent} particleConfig={particleConfig} />}
               {timeRemaining.total >= 0 && <FlipCard value={timeRemaining.hours} label="Horas" isUrgent={isUrgent} particleConfig={particleConfig} />}
               {timeRemaining.total >= 0 && <FlipCard value={timeRemaining.minutes} label="Minutos" isUrgent={isUrgent} particleConfig={particleConfig} />}

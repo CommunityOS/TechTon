@@ -67,7 +67,8 @@ export function FlipCard({
             <div
                 ref={containerRef}
                 className={cn(
-                    "flip-card relative max-w-16 xs:max-w-20 h-28 sm:w-32 sm:h-36 md:max-w-32 md:max-h-36 md:w-40 md:h-44 group cursor-default",
+                    // Give the card an explicit width on mobile so 4 cards can wrap nicely and remain legible.
+                    "flip-card relative w-20 h-24 xs:w-24 xs:h-28 sm:w-32 sm:h-36 md:w-40 md:h-44 group cursor-default",
                     "transition-all duration-300 ease-out"
                 )}
             >
