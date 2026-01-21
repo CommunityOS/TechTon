@@ -7,13 +7,10 @@ import {
   QueryClient,
   QueryClientProvider,
 } from "@tanstack/react-query";
-
-import { Button } from "@/components/Button";
+import { donations } from "@/lib/config";
 
 import { getSpecialDonations, getTransactions } from "@/helpers/api";
 
-const SECONDS = 1000;
-const DOLLAR_TO_CLP = 969;
 
 const formatMoney = (amount, system) =>
   ({
@@ -99,12 +96,12 @@ function InternalDonateInfo() {
   const { isLoading, data } = useQuery({
     queryKey: ["transactions"],
     queryFn: getTransactions,
-    refetchInterval: 10 * SECONDS
+    refetchInterval: 10 * donations.seconds
   });
   const { isLoading: isLoadingSpecial, data: specialDonations } = useQuery({
     queryKey: ['specialDonations'],
     queryFn: getSpecialDonations,
-    refetchInterval: 10 * SECONDS
+    refetchInterval: 10 * donations.seconds
   })
   const localTransactions =
     data?.searchPaymentLogs.filter((log) => log.currencyId === "CLP") ?? [];
@@ -122,7 +119,7 @@ function InternalDonateInfo() {
   const totalConsolidated =
     localConsolidatedTransactions +
     specialConsolidated +
-    (foreignConsolidatedTransactions * DOLLAR_TO_CLP / 100)
+    (foreignConsolidatedTransactions * donations.dollarToClp / 100)
 
   return (
     <>
@@ -130,20 +127,20 @@ function InternalDonateInfo() {
         <div class="w-full flex flex-col lg:flex-row justify-between gap-4">
           <DonateButton
             id="local-donation"
-            title="Donaciones Nacionales"
-            buttonTitle="Donar"
-            buttonURL="https://link.mercadopago.cl/jscl"
-            system="mercadopago"
+            title={donations.local.title}
+            buttonTitle={donations.local.buttonTitle}
+            buttonURL={donations.local.buttonURL}
+            system={donations.local.system}
             totalDonation={localConsolidatedTransactions}
             latestDonations={localTransactions}
             isLoading={isLoading}
           />
           <DonateButton
             id="foreign-donation"
-            title="Donaciones Internacionales"
-            buttonTitle="Donar"
-            buttonURL="https://buy.stripe.com/dR64jQcNI2Up0OkdR0"
-            system="stripe"
+            title={donations.foreign.title}
+            buttonTitle={donations.foreign.buttonTitle}
+            buttonURL={donations.foreign.buttonURL}
+            system={donations.foreign.system}
             totalDonation={foreignConsolidatedTransactions}
             latestDonations={foreignTransactions}
             isLoading={isLoading}
@@ -160,7 +157,7 @@ function InternalDonateInfo() {
                 <div className="font-bold text-lg grid justify-center items-center gap-4 text-white">
                   <div className="font-bold text-lg grid justify-center items-center gap-4">
                     Donaciones Adicionales
-                    <span className="text-[clamp(1.2rem,10vw,3rem)] text-primary">{formatMoney(specialConsolidated, 'mercadopago')}</span>
+                    <span className="text-[clamp(1.2rem,10vw,3rem)] text-primary">{formatMoney(specialConsolidated, donations.local.system)}</span>
                   </div>
                 </div>
               )}
@@ -175,11 +172,11 @@ function InternalDonateInfo() {
             ) : (
               <div className="font-bold text-lg grid justify-center items-center gap-4 text-[#333]">
                 Total Recolectado
-                <span className="text-[clamp(1.2rem,10vw,3rem)] text-[#222] ">{formatMoney(totalConsolidated, 'mercadopago')}</span>
+                <span className="text-[clamp(1.2rem,10vw,3rem)] text-[#222] ">{formatMoney(totalConsolidated, donations.local.system)}</span>
               </div>
             )}
 
-            <div className="text-[#333]">Esto es un aproximado. Tomando en cuenta el cambio del día. Valor USD: {DOLLAR_TO_CLP} Pesos Chilenos. Pueden haber fees en las conversiones.</div>
+            <div className="text-[#333]">Esto es un aproximado. Tomando en cuenta el cambio del día. Valor USD: {donations.dollarToClp} Pesos Chilenos. Pueden haber fees en las conversiones.</div>
           </div>
         </div>
       </div>

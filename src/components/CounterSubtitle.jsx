@@ -2,6 +2,7 @@
 import React from "react";
 import { useCssTransitionOnView } from "@/components/hooks/useCssTransitionOnView";
 import { cn } from "@/lib/utils";
+import { event } from "@/lib/config";
 
 const CounterSubtitle = () => {
   const ref = React.useRef(null);
@@ -26,7 +27,7 @@ const CounterSubtitle = () => {
           Bomberos de Chile
         </a>{" "}
         para ayudar a mitigar los efectos causados por los incendios que
-        comenzaron a ocurrir el 02-02-2024 en la V Región de Chile.
+        comenzaron a ocurrir el {event.initialIncident.toLocaleDateString("es-ES", { day: "2-digit", month: "2-digit", year: "numeric" })} en la {event.place}.
       </p>
     </div>
   );

@@ -1,7 +1,8 @@
 import Logo from "@/components/Logo";
 import { Title } from "@/components/Title";
 import { CommunityLogos } from "@/components/CommunityLogos/index";
-
+import { Button } from "@/components/Button/Button";
+import { event, organizer } from "@/lib/config";
 import { getMetaData, getViewports } from "@/lib/metadata";
 
 export const generateMetadata = () =>
@@ -32,19 +33,19 @@ export default function Nosotros() {
             }
           />
           <div className="flex flex-col items-center justify-center gap-4 lg:flex-row">
-            <div className="py-10 md:space-y-10 space-y-5">
+            <div className="py-4 md:space-y-10 space-y-5">
               <div className="font-bold text-left">
                 <p className="text-2xl lg:text-3xl">¿De qué se trata?</p>
               </div>
               <div className="space-y-4 font-light leading-7 text-left text-sm md:text-lg">
                 Somos varias comunidades tech unidas, bajo el alero de{" "}
                 <a
-                  href="https://jschile.org/"
+                  href={organizer.url}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="cursor-pointer hover:text-primary duration-300 font-semibold underline"
                 >
-                  JavaScript Chile,
+                  {organizer.name},
                 </a>{" "}
                 brindaremos charlas y sesiones de QA gratuitas mediante
                 streaming para recaudar fondos que serán entregados a{" "}
@@ -68,6 +69,12 @@ export default function Nosotros() {
                 Las donaciones se harán a una cuenta única, y luego haremos una
                 transferencia con el total de fondos recaudados.
               </div>
+              <div className="space-y-4 leading-7  flex flex-col items-center justify-center gap-4">
+                <Button href={event.forms.communities.url} target="_blank" rel="noopener noreferrer" variant="primary" >
+                  {event.forms.communities.title}
+                </Button>
+              </div>
+
             </div>
             <div className="flex flex-wrap justify-center items-center">
               <CommunityLogos />
@@ -75,6 +82,6 @@ export default function Nosotros() {
           </div>
         </div>
       </div>
-    </section>
+    </section >
   );
 }
