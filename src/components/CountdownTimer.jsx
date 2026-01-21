@@ -1,15 +1,27 @@
 "use client";
 import { useEffect, useState, useRef } from "react";
-import { NumberBox } from "./NumberBox";
 import { Button } from "./Button";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { organizer, event } from "@/lib/config";
+import { FlipCard } from "./FlipCard";
 
 const TIMEZONE = "America/Santiago";
+// Locale "neutral" + Latin digits so parsing is consistent regardless of user/device locale.
+const LOCALE = "und-u-nu-latn";
+
+const particleConfig = {
+  particleCount: 10000,
+  particleSize: { min: 0.1, max: 1 },
+  physics: {
+    spring: 0.02,
+    friction: 0.85,
+    scatterForce: 5,
+  },
+};
 
 const getChileTimeParts = (date) => {
-  return new Intl.DateTimeFormat("en-CA", {
+  return new Intl.DateTimeFormat(LOCALE, {
     timeZone: TIMEZONE,
     year: "numeric",
     month: "2-digit",
@@ -76,26 +88,12 @@ const calculateTimeRemaining = (totalMs) => {
   return { days, hours, minutes, seconds, total: totalMs };
 };
 
-const calculateFlips = (current, previous) => {
-  if (!previous || (current.days === 0 && current.hours === 0 && current.minutes === 0 && current.seconds === 0)) {
-    return { days: false, hours: false, minutes: false, seconds: false };
-  }
 
-  const sameMinute = current.minutes === previous.minutes;
-  const secondsDecreased = sameMinute && current.seconds < previous.seconds;
 
-  return {
-    days: current.days < previous.days,
-    hours: current.hours < previous.hours,
-    minutes: current.minutes < previous.minutes,
-    seconds: secondsDecreased,
-  };
-};
-
-const formatNumber = (num) => String(num).padStart(2, '0');
 
 export const CountdownTimer = () => {
   const [isClient, setIsClient] = useState(false);
+  const [isUrgent, setIsUrgent] = useState(false);
   const [timeRemaining, setTimeRemaining] = useState({
     days: 0,
     hours: 0,
@@ -110,9 +108,9 @@ export const CountdownTimer = () => {
   }, []);
 
   const eventDate = event.dates[0];
-  const eventYear = eventDate.getFullYear();
-  const eventMonth = eventDate.getMonth() + 1;
-  const eventDay = eventDate.getDate();
+  const eventYear = eventDate.getUTCFullYear();
+  const eventMonth = eventDate.getUTCMonth() + 1;
+  const eventDay = eventDate.getUTCDate();
   const [eventHours, eventMinutes] = event.time.split(':').map(Number);
 
   useEffect(() => {
@@ -142,6 +140,7 @@ export const CountdownTimer = () => {
       );
 
       const difference = eventUTC - currentUTC;
+      setIsUrgent(difference <= 24 * 60 * 60 * 1000);
       const newTime = calculateTimeRemaining(difference);
       setTimeRemaining((prev) => {
         previousTimeRef.current = { ...prev };
@@ -155,7 +154,7 @@ export const CountdownTimer = () => {
   }, [isClient, eventYear, eventMonth, eventDay, eventHours, eventMinutes]);
 
   const completed = timeRemaining.total <= 0;
-  const flips = calculateFlips(timeRemaining, previousTimeRef.current);
+
 
   if (completed) {
     return (
@@ -206,10 +205,10 @@ export const CountdownTimer = () => {
             className="w-full"
           >
             <div className="flex gap-4 sm:gap-6 md:gap-8 flex-wrap justify-center">
-              <NumberBox number={formatNumber(timeRemaining.days)} text="días" flip={flips.days} />
-              <NumberBox number={formatNumber(timeRemaining.hours)} text="horas" flip={flips.hours} />
-              <NumberBox number={formatNumber(timeRemaining.minutes)} text="minutos" flip={flips.minutes} />
-              <NumberBox number={formatNumber(timeRemaining.seconds)} text="segundos" flip={flips.seconds} />
+              {timeRemaining.total >= 0 && <FlipCard value={timeRemaining.days} label="Días" isUrgent={isUrgent} particleConfig={particleConfig} />}
+              {timeRemaining.total >= 0 && <FlipCard value={timeRemaining.hours} label="Horas" isUrgent={isUrgent} particleConfig={particleConfig} />}
+              {timeRemaining.total >= 0 && <FlipCard value={timeRemaining.minutes} label="Minutos" isUrgent={isUrgent} particleConfig={particleConfig} />}
+              {timeRemaining.total >= 0 && <FlipCard value={timeRemaining.seconds} label="Segundos" isUrgent={isUrgent} particleConfig={particleConfig} />}
             </div>
           </motion.div>
         )}
