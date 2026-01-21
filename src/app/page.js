@@ -9,6 +9,7 @@ import bomberos from "../../public/images/bomberos-bg.webp";
 import { FadeInBackgroundImages } from "@/components/FadeInBackgroundImages";
 
 import { getMetaData, getViewports } from "@/lib/metadata";
+import { event } from "@/lib/config";
 
 export const generateMetadata = () => getMetaData({});
 
@@ -44,9 +45,9 @@ export default function Home() {
               id="button-donate"
               href="/donar"
               variant="primary"
-              classnames="py-3 md:py-3.5"
+              classnames="py-3 md:py-3.5 hidden"
             >
-             Revisar donaciones
+              Revisar donaciones
             </Button>
             <Button
               id="button-info"
@@ -57,6 +58,18 @@ export default function Home() {
               Agenda
             </Button>
           </div>
+          <hr className="w-full border-gray-700 my-4" />
+          <div className="flex w-full gap-3 px-5 3xs:w-auto 3xs:gap-8 flex-col 3xs:flex-row">
+            {[event.forms.hosts, event.forms.speakers, event.forms.communities].map((form, idx) => <Button
+              id={form.title.toLowerCase().replace(" ", "-")}
+              href={form.url}
+              variant="primary"
+              classnames="py-3 md:py-3.5"
+            >
+              {form.title}
+            </Button>)}
+          </div>
+          <hr className="w-full border-gray-700 my-4" />
           <div className="lg:hidden pt-10">
             <TwitchButton />
           </div>

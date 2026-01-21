@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
+import { organizer } from "@/lib/config";
 
 export function Navbar() {
   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
@@ -58,7 +59,7 @@ export function Navbar() {
             </div>
           </div>
           <Button
-            href="https://www.twitch.tv/javascriptchile"
+            href={organizer.social.twitch}
             target="_blank"
             variant="tertiary"
             classnames="bg-twitch text-white flex gap-3 lg:hidden hover:bg-[#a675f4] hover:scale-105 duration-300 !text-sm"
@@ -80,27 +81,24 @@ export function Navbar() {
             <Link
               href="/"
               onClick={closNavBar}
-              className={`block lg:inline-block lg:mt-0 text-primary hover:text-white px-3 py-2 transition-all rounded ${
-                pathname == "/" && "bg-secondary text-primary"
-              }`}
+              className={`block lg:inline-block lg:mt-0 text-primary hover:text-white px-3 py-2 transition-all rounded ${pathname == "/" && "bg-secondary text-primary"
+                }`}
             >
               Inicio
             </Link>
             <Link
               href="/agenda"
               onClick={closNavBar}
-              className={`block lg:inline-block lg:mt-0 text-white hover:text-primary transition-all px-3 py-2 rounded ${
-                pathname == "/agenda" && "bg-secondary text-primary"
-              }`}
+              className={`block lg:inline-block lg:mt-0 text-white hover:text-primary transition-all px-3 py-2 rounded ${pathname == "/agenda" && "bg-secondary text-primary"
+                }`}
             >
               Agenda
             </Link>
             <Link
               href="/nosotros"
               onClick={closNavBar}
-              className={`block lg:inline-block lg:mt-0 text-white hover:text-primary transition-all px-3 py-2 rounded ${
-                pathname == "/nosotros" && "bg-secondary text-primary"
-              }`}
+              className={`block lg:inline-block lg:mt-0 text-white hover:text-primary transition-all px-3 py-2 rounded ${pathname == "/nosotros" && "bg-secondary text-primary"
+                }`}
             >
               Quiénes somos + comunidades
             </Link>
@@ -109,14 +107,14 @@ export function Navbar() {
             <Button
               href="/donar"
               variant="primary"
-              classnames="inline-block mt-4 lg:mt-0 min-w-0 lg:min-w-32 md:py-2 !text-sm"
+              classnames="inline-block mt-4 lg:mt-0 min-w-0 lg:min-w-32 md:py-2 !text-sm hidden"
               id="donar-btn"
               setDefaultMinWidth={false}
             >
               Revisar donaciones
             </Button>
             <Button
-              href="https://www.twitch.tv/javascriptchile"
+              href={organizer.social.twitch}
               target="_blank"
               variant="tertiary"
               classnames="bg-twitch text-white hidden gap-3 lg:flex hover:bg-[#a675f4] hover:scale-105 duration-300 py-2 sm:py-2 !text-sm items-center"
@@ -129,7 +127,7 @@ export function Navbar() {
                 width={20}
                 height={20}
               />
-              JavaScript Chile
+              {organizer.name}
             </Button>
           </div>
         </div>
