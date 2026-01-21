@@ -62,7 +62,7 @@ export function Navbar() {
             href={organizer.social.twitch}
             target="_blank"
             variant="tertiary"
-            classnames="bg-twitch text-white flex gap-3 lg:hidden hover:bg-[#a675f4] hover:scale-105 duration-300 !text-sm"
+            classnames="bg-twitch text-white flex gap-3 lg:hidden hover:bg-[#a675f4] hover:scale-105 duration-300 !text-sm hidden"
             id="twitch-mb-btn"
             setDefaultMinWidth={false}
           >
@@ -117,7 +117,7 @@ export function Navbar() {
               href={organizer.social.twitch}
               target="_blank"
               variant="tertiary"
-              classnames="bg-twitch text-white hidden gap-3 lg:flex hover:bg-[#a675f4] hover:scale-105 duration-300 py-2 sm:py-2 !text-sm items-center"
+              classnames="bg-twitch text-white hidden gap-3  hover:bg-[#a675f4] hover:scale-105 duration-300 py-2 sm:py-2 !text-sm items-center"
               id="twitch-dk-btn"
               setDefaultMinWidth={false}
             >

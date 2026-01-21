@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import { event } from "@/lib/config";
-import { getCapitalizedMonth } from "@/lib/utils";
+import { getCapitalizedMonthDateOnly, getChileDayOfMonthDateOnly, getChileYearDateOnly } from "@/lib/utils";
 
 const Footer = () => {
   return (
@@ -20,10 +20,10 @@ const Footer = () => {
         </div>
         <div className="m-auto flex-2 flex flex-col items-center">
           <div className="sm:mb-3 text-lg sm:text-md font-semibold bg-white md:p- px-5 text-center rounded-b-xl sm:rounded p-3 md:p-4">
-            <span className="font-black">{event.dates.map(date => date.getDate()).join(" y ")}</span> de {getCapitalizedMonth(event.dates[0])} de {event.dates[0].getFullYear()}
+            <span className="font-black">{event.dates.map((date) => getChileDayOfMonthDateOnly(date)).join(" y ")}</span> de {getCapitalizedMonthDateOnly(event.dates[0])} de {getChileYearDateOnly(event.dates[0])}
           </div>
           <div className="py-5 sm:py-0 space-y-3">
-            {event.days.map((elem) => <div key={`${elem.day}-${elem.date}-${elem.time}-${elem.timeZone}`} className="text-md sm:text-sm flex gap-3 items-center md:text-[15px]">
+            {event.days.map((elem) => <div key={`${elem.day}-${elem.date}-${elem.time}-${elem.timeZone}`} className="text-[12px] sm:text-sm flex gap-3 items-center md:text-[15px]">
               <span className="font-bold mr-1">{elem.day} {elem.date}</span> desde las {elem.time} hrs.
               <Image
                 alt="Hora Chile"
@@ -67,7 +67,7 @@ const Footer = () => {
               height={50}
               width={50}
             />
-            <span className="font-black mr-1">{event.dates.map(date => date.getDate()).join(" y ")}</span> de {getCapitalizedMonth(event.dates[0])} de {event.dates[0].getFullYear()}
+            <span className="font-black mr-1">{event.dates.map((date) => getChileDayOfMonthDateOnly(date)).join(" y ")}</span> de {getCapitalizedMonthDateOnly(event.dates[0])} de {getChileYearDateOnly(event.dates[0])}
           </div>
           <div className="gap-10 flex items-center text-xl">
             <Image
@@ -76,9 +76,9 @@ const Footer = () => {
               height={50}
               width={50}
             />
-            <div className="flex flex-col space-y-4">
+            <div className="flex flex-col space-y-4 xs:px-2">
 
-              {event.days.map((elem) => <div key={`${elem.day}-${elem.date}-${elem.time}-${elem.timeZone}`} className="flex gap-3 lg:text-lg xl:text-xl">
+              {event.days.map((elem) => <div key={`${elem.day}-${elem.date}-${elem.time}-${elem.timeZone}`} className="flex gap-3 lg:text-lg xl:text-xl ">
                 <span className="font-bold mr-1">{elem.day} {elem.date}</span> desde las {elem.time} hrs.
                 <Image
                   alt="Hora Chile"
