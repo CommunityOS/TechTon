@@ -4,6 +4,7 @@ import { CommunityLogos } from "@/components/CommunityLogos/index";
 import { Button } from "@/components/Button/Button";
 import { event, organizer } from "@/lib/config";
 import { getMetaData, getViewports } from "@/lib/metadata";
+import { formatDateChileDateOnly, getChileYearDateOnly, getCapitalizedMonthDateOnly } from "@/lib/utils";
 
 
 export const generateMetadata = () =>
@@ -49,7 +50,7 @@ export default function Nosotros() {
                   {organizer.name},
                 </a>{" "}
                 brindaremos charlas y sesiones de QA gratuitas mediante
-                streaming para recaudar fondos que serán entregados a{" "}
+                streaming para recaudar fondos que serán entregados a {" "}
                 <a
                   href="https://www.instagram.com/p/C243rhlsLsb/?hl=es"
                   target="_blank"
@@ -59,8 +60,7 @@ export default function Nosotros() {
                   Bomberos de Chile,
                 </a>{" "}
                 y asi poder ayudar a mitigar los efectos causados por los
-                incendios forestales que comenzaron a ocurrir el 2 de febrero
-                recién pasado, en la Región de Valparaíso, Chile.
+                incendios forestales que comenzaron a ocurrir el {formatDateChileDateOnly(event.dates[0], { day: "2-digit" })} de {getCapitalizedMonthDateOnly(event.dates[0])} del {getChileYearDateOnly(event.dates[0])} en {event.place}
               </div>
               <div className="space-y-4 font-light leading-7 text-left md:text-left text-sm md:text-lg">
                 Reconocemos el valor del trabajo voluntario de los bomberos y
