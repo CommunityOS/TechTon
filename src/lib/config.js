@@ -4,11 +4,13 @@ export const organizer = {
     url: "https://www.instagram.com/communityos.io/",
     description: "",
     social: {
-        twitter: "https://twitter.com/communityos",
+        twitch: "https://www.twitch.tv/CommunityOS",
+        twitter: "https://x.com/CommunityOS_",
         instagram: "https://www.instagram.com/communityos.io/",
-        facebook: "https://www.facebook.com/communityos",
-        linkedin: "https://www.linkedin.com/company/communityos",
-        youtube: "https://www.youtube.com/channel/UC_x5XG1OV2P6BVIhLljUz9A",
+        blueSky: "https://bsky.app/profile/communityosio.bsky.social",
+        facebook: "https://www.facebook.com/profile.php?id=61581701850247",
+        linkedin: "https://www.linkedin.com/company/communityos/",
+        youtube: "https://www.youtube.com/@CommunityOS",
     }
 }
 
@@ -33,13 +35,6 @@ export const event = {
         timeZone: "GMT-3"
     }],
     description: "",
-    social: {
-        twitter: "https://twitter.com/techton",
-        instagram: "https://www.instagram.com/techton",
-        facebook: "https://www.facebook.com/techton",
-        linkedin: "https://www.linkedin.com/company/techton",
-        youtube: "https://www.youtube.com/channel/UC_x5XG1OV2P6BVIhLljUz9A",
-    },
     forms: {
         communities: {
             url: "https://communityos.neetoform.com/fedce81831aaf6858a7c ",
@@ -58,18 +53,32 @@ export const event = {
 
 export const donations = {
     title: "Donaciones",
-    dollarToClp: 969,
+    dollarToClp: 874.4,
     seconds: 1000,
     local: {
         title: "Donaciones Nacionales",
         buttonTitle: "Donar",
-        buttonURL: "https://link.mercadopago.cl/jscl",
-        system: "mercadopago"
+        currency: "CLP",
+        buttonURL: "https://link.mercadopago.cl/ninaspro",
+        system: "mercadopago",
+        numberFormat: "es-ES"
     },
     foreign: {
         title: "Donaciones Internacionales",
         buttonTitle: "Donar",
+        currency: "USD",
         buttonURL: "https://buy.stripe.com/dR64jQcNI2Up0OkdR0",
-        system: "stripe"
+        system: "stripe",
+        numberFormat: "es-ES"
     }
+}
+
+
+export const steps = {
+    hasShowedDonations: false,
+    hasShowedSpeakers: false,
+    hasShowedHosts: false,
+    hasShowedCommunities: false,
+    hasShowedButtontoDonate: false,
+    hasTwitchButton: true,
 }

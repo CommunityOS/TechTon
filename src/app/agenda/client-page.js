@@ -6,7 +6,7 @@ import { Title } from "@/components/Title";
 import { Timeline } from "@/components/Timeline";
 import talksData from "@/talks/talks.json";
 import { AnimatePresence, motion } from "framer-motion";
-import { event } from "@/lib/config";
+import { event, steps } from "@/lib/config";
 import { formatDateChileDateOnly, getChileDayOfMonth } from "@/lib/utils";
 
 export default function Agenda() {
@@ -53,7 +53,7 @@ export default function Agenda() {
           <Button
             id="day9"
             variant={`${activeDay === 9 ? "primary" : "tertiary"}`}
-            classnames={`${talksDay1.length > 0 ? "block" : "hidden"}`}
+            classnames={`${talksDay1.length > 0 && steps.hasShowedSpeakers ? "block" : "hidden"}`}
             onClick={() => setActiveDay(9)}
           >
             {event.days[0].day} {formatDateChileDateOnly(event.dates[0], { day: "2-digit" })}
@@ -61,7 +61,7 @@ export default function Agenda() {
           <Button
             id="day10"
             variant={`${activeDay === 10 ? "primary" : "tertiary"}`}
-            classnames={`${talksDay2.length > 0 ? "block" : "hidden"}`}
+            classnames={`${talksDay2.length > 0 && steps.hasShowedSpeakers ? "block" : "hidden"}`}
             onClick={() => setActiveDay(10)}
           >
             {event.days[1].day} {formatDateChileDateOnly(event.dates[1], { day: "2-digit" })}
@@ -76,7 +76,7 @@ export default function Agenda() {
         ></div>
       </div>
       <AnimatePresence>
-        {talksDay1.length > 0 && activeDay === 9 && (
+        {talksDay1.length > 0 && activeDay === 9 && steps.hasShowedSpeakers && (
           <motion.div
             key="day9"
             initial={{ opacity: 0 }}
@@ -86,7 +86,7 @@ export default function Agenda() {
             <Timeline data={talksDay1} />
           </motion.div>
         )}
-        {talksDay2.length > 0 && activeDay === 10 && (
+        {talksDay2.length > 0 && activeDay === 10 && steps.hasShowedSpeakers && (
           <motion.div
             key="day10"
             initial={{ opacity: 0 }}

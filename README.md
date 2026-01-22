@@ -2,24 +2,24 @@
 
 ![Logo y slogan del evento](/public/logo_slogan_techton.webp)
 
-# TechTón - Streaming especial
+# TechTón - Streaming especial 2026
 
 ## ¿De qué se trata?
 
-Somos varias comunidades tech unidas, bajo el alero de [JavaScript Chile](https://jschile.org/), que brindaremos charlas y workshops gratuitos mediante streaming para recaudar fondos que serán entregados a [Bomberos de Chile](https://www.instagram.com/p/C243rhlsLsb/) y así poder ayudar a paliar los efectos causados por los incendios forestales que comenzaron a ocurrir el 02-02-2024 en la V Región de Chile (Valparaíso).
+Somos varias comunidades tech unidas, bajo el alero de [JavaScript Chile](https://jschile.org/), que brindaremos charlas y workshops gratuitos mediante streaming para recaudar fondos que serán entregados a [Bomberos de Chile](https://www.instagram.com/p/C243rhlsLsb/) y así poder ayudar a paliar los efectos causados por los incendios forestales que comenzaron a ocurrir el 16-01-2026 en la Región del Biobío en Chile.
 
 > Las donaciones se harán a una cuenta única y luego haremos una transferencia con el total de fondos recaudados.
 
 ### ¿Cuándo se hará este evento?
 
-- **Viernes 09 de febrero:** Desde las 13:00hrs (GMT-3).
-- **Sábado 10 de febrero:** Desde las 07:00hrs (GMT-3).
+- **Viernes 23 de Enero 2026:** Desde las 18:00hrs (GMT-3).
+- **Sábado 24 de Enero 2026:** Desde las 07:00hrs (GMT-3).
 
 Serán días cargados de conocimiento que todos podemos aprovechar. **¡Guarda las fechas en tu agenda!**
 
 ### ¿Dónde se hará este evento?
 
-El evento será transmitido en Twitch, a través del canal de [JavaScript Chile](https://www.twitch.tv/javascriptchile).
+El evento será transmitido en Twitch, a través del canal de [CommunityOS](https://www.twitch.tv/CommunityOS).
 
 ## Quiero participar en el evento ¿Cómo puedo ayudar?
 

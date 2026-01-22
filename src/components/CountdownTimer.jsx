@@ -174,7 +174,7 @@ export const CountdownTimer = () => {
                 href={organizer.social.twitch}
                 target="_blank"
                 variant="tertiary"
-                classnames="hidden bg-twitch text-white flex items-center gap-3 hover:bg-[#a675f4] hover:scale-105 duration-300 mt-10 mb-3 !text-3xl !px-10"
+                classnames="bg-twitch text-white flex items-center gap-3 hover:bg-[#a675f4] hover:scale-105 duration-300 mt-10 mb-3 !text-3xl !px-10"
                 id="twitch-mb-btn"
                 setDefaultMinWidth={false}
               >

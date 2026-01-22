@@ -27,17 +27,17 @@ export default function Donar() {
             <div className="text-center font-bold xl:text-left flex flex-col gap-4">
               <h2 className="text-5xl xl:text-8xl">Gracias</h2>
               <p className="text-3xl xl:text-[48px] xl:leading-[64px] pr-4">
-                por <span className="text-primary">sumarte a donar</span><br/>
+                por <span className="text-primary">sumarte a donar</span><br />
                 dinero para esta causa.
               </p>
             </div>
             <DonarSubtitulo />
           </div>
-          <div className="hidden xl:flex flex-1" />
+          <div className="xl:flex flex-1" />
         </div>
         <div className="flex flex-col xl:flex-row gap-4 w-full flex-1 px-8 xl:pl-40  pt-10">
           <DonateInfo />
-          <div className="hidden xl:flex flex-1" />
+          <div className="xl:flex flex-1" />
         </div>
       </div>
     </div>

@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { organizer } from "@/lib/config";
+import { organizer, steps } from "@/lib/config";
 
 export function Navbar() {
   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
@@ -62,7 +62,7 @@ export function Navbar() {
             href={organizer.social.twitch}
             target="_blank"
             variant="tertiary"
-            classnames="bg-twitch text-white flex gap-3 lg:hidden hover:bg-[#a675f4] hover:scale-105 duration-300 !text-sm hidden"
+            classnames={`bg-twitch  text-white flex gap-3 lg:hidden hover:bg-[#a675f4] hover:scale-105 duration-300 !text-sm ${!steps.hasTwitchButton && "hidden"}`}
             id="twitch-mb-btn"
             setDefaultMinWidth={false}
           >
@@ -107,7 +107,7 @@ export function Navbar() {
             <Button
               href="/donar"
               variant="primary"
-              classnames="inline-block mt-4 lg:mt-0 min-w-0 lg:min-w-32 md:py-2 !text-sm hidden"
+              classnames={`inline-block  mt-4 lg:mt-0 min-w-0 lg:min-w-32 md:py-2 !text-sm ${!steps.hasShowedDonations && "hidden"}`}
               id="donar-btn"
               setDefaultMinWidth={false}
             >
@@ -117,21 +117,23 @@ export function Navbar() {
               href={organizer.social.twitch}
               target="_blank"
               variant="tertiary"
-              classnames="bg-twitch text-white hidden gap-3  hover:bg-[#a675f4] hover:scale-105 duration-300 py-2 sm:py-2 !text-sm items-center"
+              classnames={`bg-twitch hidden  text-white md:block gap-3  hover:bg-[#a675f4] hover:scale-105 duration-300 py-2 sm:py-2 !text-sm items-center ${!steps.hasTwitchButton && "hidden"}`}
               id="twitch-dk-btn"
               setDefaultMinWidth={false}
             >
-              <Image
-                src="./twitch_logo.svg"
-                alt="TechTon Logo"
-                width={20}
-                height={20}
-              />
-              {organizer.name}
+              <section className="flex items-center gap-2">
+                <Image
+                  src="./twitch_logo.svg"
+                  alt="TechTon Logo"
+                  width={20}
+                  height={20}
+                />
+                {organizer.name}
+              </section>
             </Button>
           </div>
         </div>
       </div>
-    </nav>
+    </nav >
   );
 }
