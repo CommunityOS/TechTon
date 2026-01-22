@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import React from "react";
+import { Button } from "@/components/Button";
 import {
   useQuery,
   QueryClient,
@@ -14,13 +15,13 @@ import { getSpecialDonations, getTransactions } from "@/helpers/api";
 
 const formatMoney = (amount, system) =>
   ({
-    mercadopago: new Intl.NumberFormat("es-ES", {
+    mercadopago: new Intl.NumberFormat(donations.local.numberFormat, {
       style: "currency",
-      currency: "CLP",
+      currency: donations.local.currency,
     }).format(amount),
-    stripe: new Intl.NumberFormat("es-ES", {
+    stripe: new Intl.NumberFormat(donations.foreign.numberFormat, {
       style: "currency",
-      currency: "USD",
+      currency: donations.foreign.currency,
     }).format(amount / 100),
   })[system];
 
@@ -29,9 +30,9 @@ const DonateButton = ({
   totalDonation,
   latestDonations,
   title,
-  buttonTitle,
   buttonURL,
   system,
+  buttonTitle,
   isLoading,
 }) => {
   const handleShare = () => {
@@ -45,13 +46,35 @@ const DonateButton = ({
   return (
     <div className="mx-auto w-full h-full md:w-auto flex flex-col items-center justify-center gap-4 p-4 text-center bg-[#333] rounded-lg drop-shadow-lg md:min-w-96 lg:min-w-fit grow">
       <div className="mx-auto flex items-center gap-2 lg:px-4">
-        {system === "mercadopago" ? (
+        {system === donations.local.system ? (
           <Image alt="" src="/images/flags/chile.svg" height={35} width={35} />
         ) : null}
-        {system === "stripe" ? (
+        {system === donations.foreign.system ? (
           <Image alt="" src="/images/flags/world.svg" height={35} width={35} />
         ) : null}
         <span className="font-bold ">{title}</span>
+      </div>
+      <div className="flex flex-row flex-wrap gap-2">
+        <Button
+          id={`${id}`}
+          href={buttonURL}
+          target="_blank"
+          variant="primary"
+          classnames="w-full py-2"
+        >
+          {buttonTitle}
+        </Button>
+        <Button
+          id="share-button"
+          variant="secondary"
+          classnames="w-full py-2"
+          onClick={(e) => {
+            e.preventDefault();
+            handleShare();
+          }}
+        >
+          Compartir
+        </Button>
       </div>
       {isLoading ? (
         <>

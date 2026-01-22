@@ -9,7 +9,7 @@ import bomberos from "../../public/images/bomberos-bg.webp";
 import { FadeInBackgroundImages } from "@/components/FadeInBackgroundImages";
 
 import { getMetaData, getViewports } from "@/lib/metadata";
-import { event } from "@/lib/config";
+import { event, steps } from "@/lib/config";
 
 export const generateMetadata = () => getMetaData({});
 
@@ -45,7 +45,7 @@ export default function Home() {
               id="button-donate"
               href="/donar"
               variant="primary"
-              classnames="py-3 md:py-3.5 hidden"
+              classnames={`py-3 md:py-3.5 ${!steps.hasShowedDonations && "hidden"}`}
             >
               Revisar donaciones
             </Button>
@@ -71,7 +71,7 @@ export default function Home() {
             </Button>)}
           </div>
           <hr className="w-full border-gray-700 my-4" />
-          <div className="lg:hidden pt-10">
+          <div className={`pt-10 ${!steps.hasTwitchButton && "hidden"}`}>
             <TwitchButton />
           </div>
         </div>
