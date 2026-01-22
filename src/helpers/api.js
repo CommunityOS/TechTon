@@ -1,7 +1,7 @@
 export const API_URL =
   process.env.NEXT_PUBLIC_API_URL || "https://api.jschile.org/graphql";
 const SPECIAL_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSx9_AO3FFM9QN4QKgxcueQvmpfE8L4Z3CBlqJ3uGQ1EJaG9Nt9Nm-lafR_30Aj5wnvd58gpqn47u8Z/pub?output=tsv'
-const DATE = "2026-01-01T00:00:00.000Z";
+const DATE = "2026-01-22T00:00:00.000Z";
 
 const graphqlQuery = {
   query: `
