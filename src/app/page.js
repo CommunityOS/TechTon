@@ -60,7 +60,7 @@ export default function Home() {
           </div>
           <hr className="w-full border-gray-700 my-4" />
           <div className="flex w-full gap-3 px-5 xs:w-auto xs:gap-8 flex-col md:flex-row justify-center">
-            {[event.forms.hosts, event.forms.speakers, event.forms.communities].map((form, idx) => <Button
+            {[event.forms.hosts, event.forms.communities].map((form, idx) => <Button
               id={form.title.toLowerCase().replace(" ", "-")}
               key={`${form.title.toLowerCase().replace(" ", "-")}-btn`}
               href={form.url}

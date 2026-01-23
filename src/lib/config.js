@@ -76,9 +76,10 @@ export const donations = {
 
 export const steps = {
     hasShowedDonations: true,
-    hasShowedSpeakers: false,
+    hasShowedSpeakers: true,
     hasShowedHosts: false,
-    hasShowedCommunities: false,
+    hasShowedCommunities: true,
     hasShowedButtontoDonate: true,
     hasTwitchButton: true,
+    hasSpeakersButton: false,
 }

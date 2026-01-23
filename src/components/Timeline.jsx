@@ -1,18 +1,15 @@
 import Image from "next/image";
-import { useScroll, useAnimation, useInView, motion } from "framer-motion";
+import { motion } from "framer-motion";
+import { useEffect } from "react";
 import { cn } from "@/lib/utils";
 
 const Card = ({
   item,
   leftSide,
-  status, // current, future, past
+  status,
 }) => {
-  const timeFormatter = new Intl.DateTimeFormat("es-ES", {
-    hour: "2-digit",
-    minute: "2-digit",
-  });
-  const startTime = timeFormatter.format(new Date(item.startHour));
-  const endTime = timeFormatter.format(new Date(item.endHour));
+  const startTime = item.startHour.split(':')[0] + ':' + item.startHour.split(':')[1];
+  const endTime = item.endHour.split(':')[0] + ':' + item.endHour.split(':')[1];
 
   return (
     <motion.li
@@ -52,14 +49,14 @@ const Card = ({
           "md:flex-row-reverse": leftSide,
         })}
       >
-        <span className="p-[2px] flex items-center justify-center w-12 h-12 bg-blue-100 rounded-full -start-6">
+        <span className="p-[2px] flex items-center justify-center w-12 h-12 bg-blue-100 rounded-full -start-6 overflow-hidden">
           <Image
-            className="rounded-full aspect-square w-full h-full"
+            className="rounded-full w-full h-full object-cover"
             src={item.image}
             alt={item.name}
-            // fill
-            width="48"
-            height="48"
+            width={48}
+            height={48}
+            style={{ objectFit: 'cover' }}
           />
         </span>
         <div className={"flex flex-col justify-center"}>
@@ -83,6 +80,38 @@ const Card = ({
 };
 
 export function Timeline({ data }) {
+  // Precargar todas las imágenes cuando se monta el componente
+  useEffect(() => {
+    if (!data || data.length === 0) return;
+
+    data.forEach((item) => {
+      if (item.image) {
+        // Crear un link de precarga para cada imagen
+        const link = document.createElement('link');
+        link.rel = 'preload';
+        link.as = 'image';
+        link.href = item.image;
+        document.head.appendChild(link);
+
+        // También usar el prefetch de Next.js para imágenes externas
+        if (typeof window !== 'undefined' && item.image.startsWith('http')) {
+          const img = new window.Image();
+          img.src = item.image;
+        }
+      }
+    });
+
+    // Limpiar los links cuando el componente se desmonte
+    return () => {
+      const preloadLinks = document.querySelectorAll('link[rel="preload"][as="image"]');
+      preloadLinks.forEach((link) => {
+        if (data.some((item) => item.image === link.href)) {
+          link.remove();
+        }
+      });
+    };
+  }, [data]);
+
   return (
     <motion.div className="flex flex-col w-full items-start md:items-center pb-24">
       <ol className="flex justify-center items-start -left-[calc(50vw_-8px)] md:left-0 md:items-center flex-col gap-4 relative w-1 py-10 pb-24">
@@ -94,6 +123,7 @@ export function Timeline({ data }) {
               item={item}
               leftSide={(index + 1) % 2 === 0}
               status={"past"}
+              priority={index < 3} // Precargar las primeras 3 imágenes con prioridad
             />
           );
         })}
