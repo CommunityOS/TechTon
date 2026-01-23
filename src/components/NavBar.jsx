@@ -111,7 +111,7 @@ export function Navbar() {
               id="donar-btn"
               setDefaultMinWidth={false}
             >
-              Revisar donaciones
+              Donar aquí
             </Button>
             <Button
               href={organizer.social.twitch}

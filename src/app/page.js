@@ -47,7 +47,7 @@ export default function Home() {
               variant="primary"
               classnames={`py-3 md:py-3.5 ${!steps.hasShowedDonations && "hidden"}`}
             >
-              Revisar donaciones
+              Donar aquí
             </Button>
             <Button
               id="button-info"
