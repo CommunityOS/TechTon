@@ -40,6 +40,30 @@ Este es un proyecto open source, es por ello que puedes aportar tu granito de ar
 - ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 - ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
 - ![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white)
+- ![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
+
+#### Configuración de Supabase
+
+1. Instala la dependencia de Supabase:
+```bash
+npm install @supabase/supabase-js
+```
+
+2. Crea un archivo `.env.local` en la raíz del proyecto con las siguientes variables:
+```env
+NEXT_PUBLIC_SUPABASE_URL=https://letkvumhogyqcybuzron.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=sb_publishable_d5lc3PQElVD8jo0kr_rwGQ_AEsV5t9D
+```
+
+3. El cliente de Supabase ya está configurado en `src/lib/supabase.js`. Puedes importarlo así:
+```javascript
+import { supabase } from '@/lib/supabase';
+
+// Ejemplo de uso
+const { data, error } = await supabase
+  .from('tu_tabla')
+  .select('*');
+```
 
 #### Pasos a seguir para enviar tu contribución al código
 
