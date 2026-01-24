@@ -76,7 +76,7 @@ const Footer = () => {
               height={50}
               width={50}
             />
-            <div className="flex flex-col space-y-4 xs:px-2">
+            <div className="flex flex-col space-y-2 xs:px-2">
 
               {event.days.map((elem) => <div key={`${elem.day}-${elem.date}-${elem.time}-${elem.timeZone}`} className="flex gap-3 lg:text-lg xl:text-xl ">
                 <span className="font-bold mr-1">{elem.day} {elem.date}</span> desde las {elem.time} hrs.
