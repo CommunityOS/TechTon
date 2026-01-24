@@ -29,6 +29,8 @@ export const FadeInBackgroundImages = ({ image, className }) => {
       )}
       style={{
         backgroundImage: `url(${image.src})`,
+        maskImage: "linear-gradient(to left, transparent 0%, rgba(0, 0, 0, 1) 100%)",
+        WebkitMaskImage: "linear-gradient(to left, transparent 0%, rgba(0, 0, 0, 1) 100%)",
       }}
       onLoad={handleImageLoad}
     ></div>

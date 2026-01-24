@@ -8,8 +8,8 @@ const DonarSubtitulo = () => {
         className="ml-2"
         alt="Hora Chile"
         src="images/communities/Bomberos-de-Chile.webp"
-        height={100}
-        width={100}
+        height={80}
+        width={80}
       />
       <div className="font-light leading-7 text-center md:text-left text-md md:text-lg">
         Todo el dinero será dirigido a Bomberos de Chile. Estamos gestionando la transferencia. 

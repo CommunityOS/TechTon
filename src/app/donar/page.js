@@ -1,4 +1,3 @@
-import { DonarSubtitulo } from "@/components/DonarSubtitulo";
 import { DonateInfo } from "@/components/DonateInfo";
 import { FadeInBackgroundImages } from "@/components/FadeInBackgroundImages";
 import bomberos from "../../../public/images/bomberos-bg-2.webp";
@@ -18,24 +17,11 @@ export default function Donar() {
   return (
     <div className="flex flex-1 overflow-hidden relative">
       <FadeInBackgroundImages
-        className="bg-no-repeat bg-cover bg-left absolute w-[50%] aspect-square right-0 top-0 shadow-inner -z-10 lg:block"
+        className="bg-no-repeat bg-cover bg-left absolute w-[40%] aspect-square left-80 top-0 shadow-inner -z-10 lg:block"
         image={bomberos}
       />
       <div className="flex h-full w-full flex-col relative justify-center items-center max-w-full md:px-32 xl:max-w-[1920px] xl:px-5 m-auto xl:justify-center">
-        <div className="flex flex-col xl:flex-row gap-4 w-full flex-1 px-8 xl:pl-40 pt-20">
-          <div className="flex flex-col flex-1 gap-8 justify-end ">
-            <div className="text-center font-bold xl:text-left flex flex-col gap-4">
-              <h2 className="text-5xl xl:text-8xl">Gracias</h2>
-              <p className="text-3xl xl:text-[48px] xl:leading-[64px] pr-4">
-                por <span className="text-primary">sumarte a donar</span><br />
-                dinero para esta causa.
-              </p>
-            </div>
-            <DonarSubtitulo />
-          </div>
-          <div className="xl:flex flex-1" />
-        </div>
-        <div className="flex flex-col xl:flex-row gap-4 w-full flex-1 px-8 xl:pl-40  pt-10">
+        <div className="flex flex-col xl:flex-row gap-4 w-full flex-1 px-4 sm:px-6 md:px-8 xl:pl-40 pt-8 sm:pt-12 md:pt-16 xl:pt-20">
           <DonateInfo />
           <div className="xl:flex flex-1" />
         </div>
